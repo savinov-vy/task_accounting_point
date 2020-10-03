@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tree</title>
+
+</head>
+<body>
+<table>
+    <thead>
+
+    <tr>
+        <td>ID</td>
+        <td>UID</td>
+        <td>Object type</td>
+        <td>Data</td>
+        <td>Parent object ID</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="objRowList:${objRowList}">
+        <td th:text="${objRowList.id}"></td>
+        <td th:text="${objRowList.uid}"></td>
+        <td th:text="${objRowList.object_type}"></td>
+        <td th:text="${objRowList.jsonData}"></td>
+        <td th:text="${objRowList.parent_object_id}"></td>
+
+<!--    <tr th:each="products:${products}"> &lt;!&ndash;thymeleaf позволяет пользоваться циклами в том числе for each....&ndash;&gt;-->
+<!--        <td th:text="${products.id}"></td>-->
+<!--        &lt;!&ndash;нюанс синтаксиса, на самом деле thymeleaf c помощью точки обращается не к полям а к геттерам. Т.е. если геттера не будет то достать переменную id будет нельзя.&ndash;&gt;-->
+<!--        <td th:text="${products.title}"></td>-->
+<!--        <td th:text="${products.price}"></td>-->
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
