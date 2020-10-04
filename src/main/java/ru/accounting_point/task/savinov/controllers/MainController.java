@@ -22,9 +22,7 @@ public class MainController {
     @GetMapping("/tree")
     public String detailsPage(Model model) {
         List<ObjRow> objRowList = objRowService.getListObjRow();
-        System.out.println(objRowList);
         model.addAttribute("objRowList", objRowList);
-//        ModelAndView mav = new ModelAndView("tree.html");
         return "tree";
     }
 

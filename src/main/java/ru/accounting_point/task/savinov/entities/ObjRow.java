@@ -13,15 +13,21 @@ public class ObjRow {
 
     private Long parent_object_id;
 
+    private Integer level;
+
+    private String path;
+
     public ObjRow() {
     }
 
-    public ObjRow(Long id, String uid, Integer object_type, JsonData jsonData, Long parent_object_id) {
+    public ObjRow(Long id, String uid, Integer object_type, JsonData jsonData, Long parent_object_id, Integer level, String path) {
         this.id = id;
         this.uid = uid;
         this.object_type = object_type;
         this.jsonData = jsonData;
         this.parent_object_id = parent_object_id;
+        this.level = level;
+        this.path = path;
     }
 
     public Long getId() {
@@ -62,6 +68,22 @@ public class ObjRow {
 
     public void setParent_object_id(Long parent_object_id) {
         this.parent_object_id = parent_object_id;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     @Override
