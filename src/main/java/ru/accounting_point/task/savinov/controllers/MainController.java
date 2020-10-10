@@ -21,7 +21,7 @@ public class MainController {
 
     @GetMapping("/tree")
     public String detailsPage(Model model) {
-        List<ObjRow> objRowList = objRowService.getListObjRow();
+        List<StringBuilder> objRowList = objRowService.getListObjRow();
         model.addAttribute("objRowList", objRowList);
         return "tree";
     }

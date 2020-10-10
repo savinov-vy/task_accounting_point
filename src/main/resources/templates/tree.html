@@ -4,33 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Tree</title>
+    <style type="text/css">
+   BODY {
+    background: white;
+   }
+   TABLE {
+
+    border-collapse: collapse;
+
+   }
+   TD, TH {
+    padding: 3px;
+    border: 1px solid maroon;
+    text-align: center;
+   }
+  </style>
 
 </head>
 <body>
+
+<p th:utext="${objRowList}"></p>
+
+
+
+
+
 <table>
     <thead>
 
     <tr>
-        <td>ID</td>
+<!--        <td>ID</td>
         <td>UID</td>
         <td>Object type</td>
         <td>Data</td>
         <td>Parent object ID</td>
-        <td>Level</td>
+        <td>Level</td>-->
         <td>Path</td>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="objRowList:${objRowList}">
+<!--    <tr th:each="objRowList:${objRowList}">
         <td th:text="${objRowList.id}"></td>
         <td th:text="${objRowList.uid}"></td>
         <td th:text="${objRowList.object_type}"></td>
         <td th:text="${objRowList.jsonData}"></td>
         <td th:text="${objRowList.parent_object_id}"></td>
-        <td th:text="${objRowList.level}"></td>
+        <td th:text="${objRowList.level}"></td>-->
         <td th:text="${objRowList.path}"></td>
     </tr>
     </tbody>
 </table>
+
 </body>
 </html>

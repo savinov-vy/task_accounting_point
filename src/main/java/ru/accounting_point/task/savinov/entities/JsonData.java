@@ -22,6 +22,10 @@ public class JsonData implements Serializable {
         this.age = age;
     }
 
+    public JsonData(int age) {
+        this.age = age;
+    }
+
     public String getName() {
         return name;
     }

@@ -3,6 +3,7 @@ package ru.accounting_point.task.savinov.entities;
 
 public class ObjRow {
 
+
     private Long id;
 
     private String uid;
@@ -30,10 +31,13 @@ public class ObjRow {
         this.path = path;
     }
 
+
+
+
+
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -92,7 +96,10 @@ public class ObjRow {
                 "id=" + id +
                 ", uid='" + uid + '\'' +
                 ", object_type=" + object_type +
+                ", jsonData=" + jsonData +
                 ", parent_object_id=" + parent_object_id +
+                ", level=" + level +
+                ", path='" + path + '\'' +
                 '}';
     }
 }
