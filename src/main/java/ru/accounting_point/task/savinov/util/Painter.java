@@ -1,8 +1,8 @@
 package ru.accounting_point.task.savinov.util;
 
 import ru.accounting_point.task.savinov.entities.ObjRow;
-
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Painter {
 
@@ -11,61 +11,54 @@ public class Painter {
     }
 
 
-    public void paintTree(Map<Long, ObjRow> objRows) {
-        String string = new String();
+    public ArrayList<String> paintTree(Map<Long, ObjRow> objRows) {
 
-        ArrayList<String> arrayList = new ArrayList<>(30000);
-
+        ArrayList<ArrayList<String>> arrayListsTree = new ArrayList<>();
 
         for (Map.Entry<Long, ObjRow> entry : objRows.entrySet()) {
+            ArrayList<String> arrayList = new ArrayList<>(2000);
+
             String[] forBild = entry.getValue().getPath().split(" -> ");
+            ArrayList<Integer> nodeTree = new ArrayList<>(convertMasStringToMasInt(forBild));
+            String str = new String();
+            for (Integer integer : nodeTree) {
+                Long num = (long) integer;
+                String name = objRows.get(num).getJsonData().getName();
 
-
- /*           for (Long str : Long.parseLong(forBild)) {
-                string += str;
-
-            }*/
-      //      System.out.println(string);
-       string += "-";
-            arrayList.add(string);
-            string = "";
-
+                if (name != null) str = name;
+                else str = objRows.get(num).getUid();
+                arrayList.add(str);
+            }
+            arrayListsTree.add(arrayList);
         }
-        System.out.println(arrayList);
 
-
-        //       return rowTree;
-
+        return convertArrListMasstoArrListString(arrayListsTree);
     }
-    public int[] convertMasStringToMasInt(String[] args){
-        int[] array = Arrays.asList(args).stream().mapToInt(Integer::parseInt).toArray();
+
+    public List<Integer> convertMasStringToMasInt(String[] args) {
+        List<Integer> array = Arrays.asList(args).stream().mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
+
         return array;
-        }
     }
 
-//            pathOnTree.append(objRow.getPath());return Arrays.stream(unsorted)
-//             .map(BigSorting2::convertFromStringToBigInteger)
-//             .toArray(BigInteger[]::new);
+
+    public ArrayList<String> convertArrListMasstoArrListString(ArrayList<ArrayList<String>> listInList) {
+        ArrayList<String> listString = new ArrayList<>();
+        for (ArrayList<String> list : listInList) {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (int i = 0; i < list.size(); i++) {
+                stringBuilder.append(list.get(i));
+                if (list.size() - 1 > i) stringBuilder.append(" -> ");
+            }
+            String string = new String(stringBuilder);
+            listString.add(string);
+        }
+        return listString;
+    }
 
 
-//            rowTree.add(pathOnTree);
-//            pathOnTree.delete(0, objRow.getPath().length());
-
-
-//            String[] pathOnTreeMas = objRow.getPath().split(" -> ");
-//
-//            for (String idObjRowStr : pathOnTreeMas) {
-//                idObjRow += idObjRow;
-
-    //   Long idObjRowNum = Long.parseLong(idObjRowStr);
-    //  pathOnTree.append(objRows.get(idObjRowNum).getJsonData().getName() != null ? objRows.get(idObjRowNum).getJsonData().getName() : objRows.get(idObjRowNum).getUid());
-    //   pathOnTree.append(" -> ");
-//
-//            }
-//
-//            rowTree.add(pathOnTree);
-//
-//            pathOnTree.substring(0);
+}
 
 
 

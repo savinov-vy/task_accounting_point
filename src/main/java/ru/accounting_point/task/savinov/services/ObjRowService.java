@@ -3,10 +3,8 @@ package ru.accounting_point.task.savinov.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.accounting_point.task.savinov.DAO.ObjectDAO;
-import ru.accounting_point.task.savinov.entities.ObjRow;
 import ru.accounting_point.task.savinov.util.Painter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,13 +18,9 @@ public class ObjRowService {
         this.objectDAO = objectDAO;
     }
 
-    public List<StringBuilder> getListObjRow() {
+    public List<String> getListObjRow() {
         Painter painter = new Painter();
-
-        StringBuilder stringBuilder = new StringBuilder();
-        List<StringBuilder> stringBuilders = new ArrayList<>();
-      //  return painter.paintTree(objectDAO.getMapObjRow());
-        return stringBuilders;
+        return painter.paintTree(objectDAO.getMapObjRow());
     }
 
 }

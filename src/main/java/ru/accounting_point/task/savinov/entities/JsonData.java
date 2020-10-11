@@ -1,6 +1,4 @@
 package ru.accounting_point.task.savinov.entities;
-
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.*;

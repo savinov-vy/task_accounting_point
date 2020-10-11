@@ -1,21 +1,13 @@
 package ru.accounting_point.task.savinov.DAO;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Component;
-import ru.accounting_point.task.savinov.entities.JsonData;
 import ru.accounting_point.task.savinov.entities.ObjRow;
 import ru.accounting_point.task.savinov.util.Converter;
-
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 @Component
 public class ObjectDAO {
@@ -66,30 +58,4 @@ public class ObjectDAO {
 
 }
 
-
-       /*             ObjRow objRow = new ObjRow();
-            objRow.setId(rs.getLong(1));
-            objRow.setUid(rs.getString(2));
-            objRow.setObject_type(rs.getInt(3));
-            try {
-                objRow.setJsonData(Converter.toJavaObject(rs.getString(4)));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            objRow.setParent_object_id(rs.getLong(5));
-            objRow.setLevel(rs.getInt(6));
-            objRow.setPath(rs.getString(7));
-
-            return objRow;
-        });
-
-        jdbcTemplate.query("select string1,string2 from table where x=1", new ResultSetExtractor<Map>(){
-            @Override
-            public Map extractData(ResultSet rs) throws SQLException,DataAccessException {
-                HashMap<String,String> mapRet= new HashMap<String,String>();
-                while(rs.next()){
-                    mapRet.put(rs.getString("string1"),rs.getString("string2"));
-                }
-                return mapRet;
-            }*/
 

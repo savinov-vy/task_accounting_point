@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import ru.accounting_point.task.savinov.entities.ObjRow;
 import ru.accounting_point.task.savinov.services.ObjRowService;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class MainController {
 
     @GetMapping("/tree")
     public String detailsPage(Model model) {
-        List<StringBuilder> objRowList = objRowService.getListObjRow();
+        List<String> objRowList = objRowService.getListObjRow();
         model.addAttribute("objRowList", objRowList);
         return "tree";
     }
