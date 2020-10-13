@@ -16,7 +16,7 @@
     border: 1px solid maroon;
    }
 
-  </style>
+    </style>
 
 </head>
 <body>
@@ -25,13 +25,13 @@
 <table>
     <thead align="center">
     <tr>
-        <td>Path</td>
+        <td>Path to each node</td>
     </tr>
     </thead>
     <tbody align="left">
-        <tr th:each="data, iterstat:${objRowList}">
+    <tr th:each="data, iterstat:${objRowList}">
         <td th:text="${data}" th:id="|td${iterstat.index}|"></td>
-            </tr>
+    </tr>
     </tbody>
 </table>
 

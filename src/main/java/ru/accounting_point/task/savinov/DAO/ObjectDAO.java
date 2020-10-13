@@ -14,11 +14,9 @@ public class ObjectDAO {
 
     private JdbcTemplate jdbcTemplate;
 
-
     public ObjectDAO(JdbcTemplate jdbcTemplate) throws SQLException {
         this.jdbcTemplate = jdbcTemplate;
     }
-
 
     public LinkedHashMap<Long, ObjRow> getMapObjRow() {
         return jdbcTemplate.query("                                                                                                       " +
@@ -43,8 +41,6 @@ public class ObjectDAO {
                                     rs.getLong(5),
                                     rs.getInt(6),
                                     rs.getString(7)
-
-
                             ));
                         } catch (IOException ioException) {
                             ioException.printStackTrace();
@@ -52,7 +48,6 @@ public class ObjectDAO {
                     }
                     return answ;
                 });
-
     }
 
 

@@ -1,10 +1,9 @@
 package ru.accounting_point.task.savinov.entities;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.io.*;
 
-
-public class JsonData implements Serializable {
+public class JsonData{
 
     @JsonProperty("name")
     private String name;

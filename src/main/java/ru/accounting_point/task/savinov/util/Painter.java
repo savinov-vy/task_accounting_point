@@ -1,63 +1,49 @@
 package ru.accounting_point.task.savinov.util;
 
 import ru.accounting_point.task.savinov.entities.ObjRow;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Painter {
 
-
     public Painter() {
     }
 
+    public List<String> paintTree(Map<Long, ObjRow> objRows) {
 
-    public ArrayList<String> paintTree(Map<Long, ObjRow> objRows) {
-
-        ArrayList<ArrayList<String>> arrayListsTree = new ArrayList<>();
+        List<List<String>> listWithInnerList = new ArrayList<>();
 
         for (Map.Entry<Long, ObjRow> entry : objRows.entrySet()) {
-            ArrayList<String> arrayList = new ArrayList<>(2000);
+            List<String> arrayList = new ArrayList<>(2000);
 
             String[] forBild = entry.getValue().getPath().split(" -> ");
-            ArrayList<Integer> nodeTree = new ArrayList<>(convertMasStringToMasInt(forBild));
-            String str = new String();
+            List<Integer> nodeTree = new ArrayList<>(convertMasStringToListInt(forBild));
+            String str = null;
             for (Integer integer : nodeTree) {
-                Long num = (long) integer;
+                Long num = Long.valueOf(integer);
                 String name = objRows.get(num).getJsonData().getName();
-
-                if (name != null) str = name;
-                else str = objRows.get(num).getUid();
+                str = name != null ? name : objRows.get(num).getUid();
                 arrayList.add(str);
             }
-            arrayListsTree.add(arrayList);
+            listWithInnerList.add(arrayList);
         }
-
-        return convertArrListMasstoArrListString(arrayListsTree);
+        return convertListInsideListBrancheToArrListStringBranche(listWithInnerList);
     }
 
-    public List<Integer> convertMasStringToMasInt(String[] args) {
-        List<Integer> array = Arrays.asList(args).stream().mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
+    public Map<Integer, Long>  getStatisticsOnTypeNode(Map<Long, ObjRow> objRowMap){
+        return objRowMap.values().stream().collect(Collectors.groupingBy(ObjRow::getObject_type, Collectors.counting()));
 
-        return array;
     }
 
-
-    public ArrayList<String> convertArrListMasstoArrListString(ArrayList<ArrayList<String>> listInList) {
-        ArrayList<String> listString = new ArrayList<>();
-        for (ArrayList<String> list : listInList) {
-            StringBuilder stringBuilder = new StringBuilder();
-
-            for (int i = 0; i < list.size(); i++) {
-                stringBuilder.append(list.get(i));
-                if (list.size() - 1 > i) stringBuilder.append(" -> ");
-            }
-            String string = new String(stringBuilder);
-            listString.add(string);
-        }
-        return listString;
+    private List<Integer> convertMasStringToListInt(String[] args) {
+        List<Integer> idEachUserInTreeBranch = Arrays.asList(args).stream().mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
+        return idEachUserInTreeBranch;
     }
 
-
+    private List<String> convertListInsideListBrancheToArrListStringBranche(List<List<String>> listInList) {
+        return listInList.stream().map(v -> v.stream().collect(Collectors.joining(" -> "))).collect(Collectors.toList());
+    }
 }
 
 

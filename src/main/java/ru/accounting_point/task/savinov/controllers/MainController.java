@@ -17,7 +17,6 @@ public class MainController {
         this.objRowService = objRowService;
     }
 
-
     @GetMapping("/tree")
     public String detailsPage(Model model) {
         List<String> objRowList = objRowService.getListObjRow();
