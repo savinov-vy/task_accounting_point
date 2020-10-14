@@ -1,7 +1,7 @@
 package ru.accounting_point.task.savinov.util;
 
 import ru.accounting_point.task.savinov.entities.ObjRow;
-
+import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -10,20 +10,19 @@ public class Painter {
     public Painter() {
     }
 
-    public List<String> paintTree(Map<Long, ObjRow> objRows) {
+    public List<String> paintTree(Map<BigInteger, ObjRow> objRows) {
 
         List<List<String>> listWithInnerList = new ArrayList<>();
 
-        for (Map.Entry<Long, ObjRow> entry : objRows.entrySet()) {
+        for (Map.Entry<BigInteger, ObjRow> entry : objRows.entrySet()) {
             List<String> arrayList = new ArrayList<>(2000);
 
             String[] forBild = entry.getValue().getPath().split(" -> ");
-            List<Integer> nodeTree = new ArrayList<>(convertMasStringToListInt(forBild));
+            List<BigInteger> nodeTree = new ArrayList<BigInteger>(convertMasStringToListBigInt(forBild));
             String str = null;
-            for (Integer integer : nodeTree) {
-                Long num = Long.valueOf(integer);
-                String name = objRows.get(num).getJsonData().getName();
-                str = name != null ? name : objRows.get(num).getUid();
+            for (BigInteger bigInteger : nodeTree) {
+                String name = objRows.get(bigInteger).getJsonData().getName();
+                str = name != null ? name : objRows.get(bigInteger).getUid();
                 arrayList.add(str);
             }
             listWithInnerList.add(arrayList);
@@ -31,14 +30,14 @@ public class Painter {
         return convertListInsideListBrancheToArrListStringBranche(listWithInnerList);
     }
 
-    public Map<Integer, Long>  getStatisticsOnTypeNode(Map<Long, ObjRow> objRowMap){
+    public Map<Integer, Long>  getStatisticsOnTypeNode(Map<BigInteger, ObjRow> objRowMap){
         return objRowMap.values().stream().collect(Collectors.groupingBy(ObjRow::getObject_type, Collectors.counting()));
 
     }
 
-    private List<Integer> convertMasStringToListInt(String[] args) {
-        List<Integer> idEachUserInTreeBranch = Arrays.asList(args).stream().mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
-        return idEachUserInTreeBranch;
+    private List<BigInteger> convertMasStringToListBigInt(String[] args) {
+        List<BigInteger> bigIntegerIdList = Arrays.stream(args).map(BigInteger::new).collect(Collectors.toList());
+        return bigIntegerIdList;
     }
 
     private List<String> convertListInsideListBrancheToArrListStringBranche(List<List<String>> listInList) {

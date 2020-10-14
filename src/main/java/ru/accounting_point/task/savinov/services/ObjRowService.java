@@ -5,10 +5,11 @@ import org.springframework.stereotype.Service;
 import ru.accounting_point.task.savinov.DAO.ObjectDAO;
 import ru.accounting_point.task.savinov.util.Painter;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ObjRowService {
-
+    Painter painter = new Painter();
     private ObjectDAO objectDAO;
 
     @Autowired
@@ -17,8 +18,10 @@ public class ObjRowService {
     }
 
     public List<String> getListObjRow() {
-        Painter painter = new Painter();
         return painter.paintTree(objectDAO.getMapObjRow());
     }
 
+    public Map<Integer, Long> getMapStatiscsTypeObjRow(){
+        return painter.getStatisticsOnTypeNode(objectDAO.getMapObjRow());
+    }
 }

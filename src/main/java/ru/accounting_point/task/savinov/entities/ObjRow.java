@@ -1,10 +1,11 @@
 package ru.accounting_point.task.savinov.entities;
 
+import java.math.BigInteger;
+
 
 public class ObjRow {
 
-
-    private Long id;
+    private BigInteger id;
 
     private String uid;
 
@@ -12,7 +13,7 @@ public class ObjRow {
 
     private JsonData jsonData;
 
-    private Long parent_object_id;
+    private BigInteger parent_object_id;
 
     private Integer level;
 
@@ -21,7 +22,7 @@ public class ObjRow {
     public ObjRow() {
     }
 
-    public ObjRow(Long id, String uid, Integer object_type, JsonData jsonData, Long parent_object_id, Integer level, String path) {
+    public ObjRow(BigInteger id, String uid, Integer object_type, JsonData jsonData, BigInteger parent_object_id, Integer level, String path) {
         this.id = id;
         this.uid = uid;
         this.object_type = object_type;
@@ -31,11 +32,11 @@ public class ObjRow {
         this.path = path;
     }
 
-    public Long getId() {
+    public BigInteger getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(BigInteger id) {
         this.id = id;
     }
 
@@ -63,11 +64,11 @@ public class ObjRow {
         this.jsonData = jsonData;
     }
 
-    public Long getParent_object_id() {
+    public BigInteger getParent_object_id() {
         return parent_object_id;
     }
 
-    public void setParent_object_id(Long parent_object_id) {
+    public void setParent_object_id(BigInteger parent_object_id) {
         this.parent_object_id = parent_object_id;
     }
 

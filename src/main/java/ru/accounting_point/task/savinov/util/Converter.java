@@ -10,5 +10,4 @@ public class Converter {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(strJSON, JsonData.class);
     }
-
 }

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Tree</title>
+
     <style type="text/css">
    BODY {
     background: white;
@@ -14,23 +15,40 @@
    TD, TH {
     padding: 3px;
     border: 1px solid maroon;
+
    }
-
     </style>
-
 </head>
+
 <body>
-
-
 <table>
     <thead align="center">
     <tr>
-        <td>Path to each node</td>
+        <td><strong>Path to each node</strong></td>
     </tr>
     </thead>
     <tbody align="left">
     <tr th:each="data, iterstat:${objRowList}">
         <td th:text="${data}" th:id="|td${iterstat.index}|"></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+
+<table>
+    <thead align="center">
+    <tr>
+        <th colspan="2"><strong>Statistic on the type nodes</strong></th>
+    </tr>
+    </thead>
+    <tbody align="center">
+    <tr>
+        <td>Types of nodes</td>
+        <td>Count nodes</td>
+    </tr>
+    <tr th:each="entry: ${statisticsTypeNodeMap}">
+        <td th:text="${entry.key}"></td>
+        <td th:text="${entry.value}"></td>
     </tr>
     </tbody>
 </table>
