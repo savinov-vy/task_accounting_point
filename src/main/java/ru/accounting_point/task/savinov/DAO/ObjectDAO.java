@@ -30,11 +30,11 @@ public class ObjectDAO {
                         " WHERE o.parent_object_id = r.id)                                                                                  \n" +
                         " SELECT * FROM rec;",
                 (ResultSetExtractor<LinkedHashMap>) rs -> {
-                    LinkedHashMap<BigInteger, ObjRow> answ = new LinkedHashMap<>();
+                    LinkedHashMap<BigInteger, ObjRow> answer = new LinkedHashMap<>();
 
                     while (rs.next()) {
                         try {
-                            answ.put(rs.getObject(1, BigInteger.class), new ObjRow(
+                            answer.put(rs.getObject(1, BigInteger.class), new ObjRow(
                                     rs.getObject(1, BigInteger.class),
                                     rs.getString(2),
                                     rs.getInt(3),
@@ -47,7 +47,7 @@ public class ObjectDAO {
                             ioException.printStackTrace();
                         }
                     }
-                    return answ;
+                    return answer;
                 });
     }
 }
